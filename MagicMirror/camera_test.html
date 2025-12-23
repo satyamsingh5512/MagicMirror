@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Camera Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        video {
+            border: 2px solid #333;
+            border-radius: 10px;
+            margin: 20px;
+        }
+        .error {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .success {
+            color: #51cf66;
+            background: rgba(81, 207, 102, 0.1);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        button {
+            background: #4c6ef5;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        button:hover {
+            background: #364fc7;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Camera Access Test</h1>
+        <p>This page tests if camera access works in your browser.</p>
+        
+        <button onclick="startCamera()">Start Camera</button>
+        <button onclick="stopCamera()">Stop Camera</button>
+        
+        <div id="status"></div>
+        
+        <video id="video" width="640" height="480" autoplay muted></video>
+        
+        <div id="info">
+            <h3>Browser Info:</h3>
+            <p>User Agent: <span id="userAgent"></span></p>
+            <p>HTTPS: <span id="httpsStatus"></span></p>
+            <p>MediaDevices Support: <span id="mediaSupport"></span></p>
+        </div>
+    </div>
+
+    <script>
+        let stream = null;
+        const video = document.getElementById('video');
+        const status = document.getElementById('status');
+
+        // Display browser info
+        document.getElementById('userAgent').textContent = navigator.userAgent;
+        document.getElementById('httpsStatus').textContent = location.protocol === 'https:' ? 'Yes' : 'No';
+        document.getElementById('mediaSupport').textContent = 
+            (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) ? 'Yes' : 'No';
+
+        function showStatus(message, isError = false) {
+            status.innerHTML = `<div class="${isError ? 'error' : 'success'}">${message}</div>`;
+            console.log(message);
+        }
+
+        async function startCamera() {
+            try {
+                showStatus('Requesting camera access...');
+                
+                if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                    throw new Error('getUserMedia is not supported in this browser');
+                }
+
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        width: { ideal: 640 },
+                        height: { ideal: 480 },
+                        facingMode: 'user'
+                    },
+                    audio: false
+                });
+
+                video.srcObject = stream;
+                await video.play();
+                
+                showStatus('Camera started successfully!');
+                
+                // Log stream info
+                const videoTrack = stream.getVideoTracks()[0];
+                const settings = videoTrack.getSettings();
+                console.log('Camera settings:', settings);
+                
+            } catch (error) {
+                showStatus(`Camera error: ${error.name} - ${error.message}`, true);
+                console.error('Camera error:', error);
+            }
+        }
+
+        function stopCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                video.srcObject = null;
+                stream = null;
+                showStatus('Camera stopped');
+            }
+        }
+
+        // Auto-start camera on page load
+        window.addEventListener('load', () => {
+            setTimeout(startCamera, 1000);
+        });
+    </script>
+</body>
+</html>

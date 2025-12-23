@@ -1,0 +1,12 @@
+{
+  "name": "Voice Assistant",
+  "version": "1.0",
+  "slug": "voice_assistant",
+  "description": "Custom voice assistant with Gemini AI",
+  "startup": "application",
+  "boot": "auto",
+  "audio": true,
+  "privileged": ["SYS_ADMIN", "SYS_RAWIO"],
+  "options": {},
+  "schema": {}
+}
