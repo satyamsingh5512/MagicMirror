@@ -485,7 +485,7 @@ read -p "🔐 Enter your Google Gemini API key (optional): " API_KEY
 if [ -n "$API_KEY" ]; then
     echo "✅ API key will be configured"
     # Update the assistant bridge with the new API key
-    sed -i "s/api_key = 'AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw'/api_key = '$API_KEY'/" "$MAGICMIRROR_DIR/assistant_bridge_simple.py"
+    sed -i "s/api_key = 'YOUR_API_KEY_HERE'/api_key = '$API_KEY'/" "$MAGICMIRROR_DIR/assistant_bridge_simple.py"
     echo "🔄 API key updated in assistant bridge"
 else
     echo "⚠️  No API key provided. Using fallback AI responses."

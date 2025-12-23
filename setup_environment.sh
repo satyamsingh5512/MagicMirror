@@ -402,7 +402,7 @@ def test_ai():
     print("🤖 Testing Google Generative AI...")
     
     # Try to get API key
-    api_key = 'AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw'  # Default key (may be quota exceeded)
+    api_key = 'YOUR_API_KEY_HERE'  # Replace with your API key
     
     if not api_key:
         print("❌ No API key found")

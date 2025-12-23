@@ -28,7 +28,7 @@ Replace the API key in the assistant bridge file:
 nano ~/Documents/projects/Magicmirror/MagicMirror/assistant_bridge_simple.py
 
 # Find this line (around line 19):
-api_key = 'AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw'
+api_key = 'YOUR_API_KEY_HERE'
 
 # Replace with your new key:
 api_key = 'YOUR_NEW_API_KEY_HERE'

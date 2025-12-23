@@ -8,8 +8,8 @@ import threading
 from multiprocessing import Event, Process
 
 # --- AI Configuration ---
-# api_key = os.getenv("GOOGLE_API_KEY")
-api_key='AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw'
+api_key = os.getenv("GOOGLE_API_KEY")
+# api_key='YOUR_API_KEY_HERE'  # Or set GOOGLE_API_KEY environment variable
 
 if api_key:
     try:

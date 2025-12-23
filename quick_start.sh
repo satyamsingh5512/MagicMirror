@@ -308,7 +308,7 @@ reconfigure_api_key() {
     print_header "Reconfiguring API Key"
     
     echo -e "${BLUE}Current API Key Status:${NC}"
-    if grep -q "AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw" "$MAGICMIRROR_DIR/assistant_bridge_simple.py" 2>/dev/null; then
+    if grep -q "YOUR_API_KEY_HERE" "$MAGICMIRROR_DIR/assistant_bridge_simple.py" 2>/dev/null; then
         print_warning "Using default API key (may be quota exceeded)"
     else
         print_success "Using custom API key"
@@ -327,7 +327,7 @@ reconfigure_api_key() {
             cp "$MAGICMIRROR_DIR/assistant_bridge_simple.py" "$MAGICMIRROR_DIR/assistant_bridge_simple.py.backup"
             
             # Replace API key
-            sed -i "s/api_key = 'AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw'/api_key = '$NEW_API_KEY'/" "$MAGICMIRROR_DIR/assistant_bridge_simple.py"
+            sed -i "s/api_key = 'YOUR_API_KEY_HERE'/api_key = '$NEW_API_KEY'/" "$MAGICMIRROR_DIR/assistant_bridge_simple.py"
             
             print_success "API key updated successfully!"
             print_info "Backup saved as: assistant_bridge_simple.py.backup"

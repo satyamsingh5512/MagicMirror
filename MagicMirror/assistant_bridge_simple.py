@@ -16,7 +16,7 @@ try:
     import google.generativeai as genai
     
     # Configure AI with fallback
-    api_key = 'AIzaSyAGXt6bym2RVT1FrYVydvwAHqn5r1Ic-zw'  # This key is quota exceeded
+    api_key = os.getenv('GOOGLE_API_KEY', 'YOUR_API_KEY_HERE')  # Set your API key here or use environment variable
     
     # Try multiple models and fallbacks
     model = None
