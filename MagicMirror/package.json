@@ -1,6 +1,10 @@
 {
   "name": "magicmirror",
   "version": "2.33.0",
+  "_moduleAliases": {
+    "logger": "js/logger.js",
+    "node_helper": "js/node_helper.js"
+  },
   "description": "The open source modular smart mirror platform.",
   "keywords": [
     "magic mirror",
@@ -120,10 +124,6 @@
   },
   "optionalDependencies": {
     "electron": "^38.1.2"
-  },
-  "_moduleAliases": {
-    "logger": "js/logger.js",
-    "node_helper": "js/node_helper.js"
   },
   "engines": {
     "node": ">=22.18.0"
