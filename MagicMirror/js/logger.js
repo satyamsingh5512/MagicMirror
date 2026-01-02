@@ -3,6 +3,7 @@
 	if (typeof exports === "object") {
 		if (process.env.JEST_WORKER_ID === undefined) {
 			const { styleText } = require("node:util");
+			require("module-alias/register");
 
 			// add timestamps in front of log messages
 			require("console-stamp")(console, {
@@ -107,3 +108,4 @@
 
 	return logLevel;
 }));
+const Log = require("logger");

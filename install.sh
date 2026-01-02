@@ -477,7 +477,7 @@ echo ""
 echo "🔑 API Key Setup (Optional but Recommended)"
 echo "   The system works with fallback responses, but for full AI features:"
 echo "   1. Visit: https://makersuite.google.com/app/apikey"
-echo "   2. Create a free Google Gemini API key"
+echo "   2. Create a free Google "
 echo "   3. Enter it below (or press Enter to skip)"
 echo ""
 read -p "🔐 Enter your Google Gemini API key (optional): " API_KEY

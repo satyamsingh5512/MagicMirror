@@ -1,0 +1,38 @@
+{
+  "name": "magicmirror",
+  "version": "1.0.0",
+  "description": "Complete smart mirror with AI voice assistant, HD camera, face detection, and Indian localization.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "echo\"Success\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/satyamsingh5512/MagicMirror.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/satyamsingh5512/MagicMirror/issues"
+  },
+  "homepage": "https://github.com/satyamsingh5512/MagicMirror#readme",
+
+"_moduleAliases": {
+  "logger": "js/logger.js"
+},
+
+
+
+"imports": {
+  "#module_functions": {
+    "default": "./js/module_functions.js"
+  },
+  "#server_functions": {
+    "default": "./js/server_functions.js"
+  }
+}
+}
