@@ -43,6 +43,8 @@ sudo apt update
 # Install required packages
 echo ""
 echo -e "${BLUE}📦 Installing required packages...${NC}"
+
+# Core packages (always available)
 sudo apt install -y \
     git \
     nodejs \
@@ -50,30 +52,46 @@ sudo apt install -y \
     python3 \
     python3-pip \
     python3-venv \
-    libatlas-base-dev \
-    libopenblas-dev \
     libjpeg-dev \
     libpng-dev \
+    libgtk-3-dev
+
+# Optional packages (install if available)
+echo -e "${BLUE}📦 Installing optional packages...${NC}"
+sudo apt install -y \
+    libopenblas-dev \
     libavcodec-dev \
     libavformat-dev \
     libswscale-dev \
     libv4l-dev \
     libxvidcore-dev \
     libx264-dev \
-    libgtk-3-dev \
-    libcanberra-gtk-module \
-    libcanberra-gtk3-module
+    2>/dev/null || echo -e "${YELLOW}⚠️  Some optional packages not available (this is OK)${NC}"
 
 # Check Node.js version
-NODE_VERSION=$(node -v | cut -d'v' -f2 | cut -d'.' -f1)
+NODE_VERSION=$(node -v 2>/dev/null | cut -d'v' -f2 | cut -d'.' -f1 || echo "0")
 echo ""
-echo -e "${BLUE}Node.js version: $(node -v)${NC}"
+echo -e "${BLUE}Node.js version: $(node -v 2>/dev/null || echo 'Not installed')${NC}"
 
 if [ "$NODE_VERSION" -lt 18 ]; then
-    echo -e "${YELLOW}⚠️  Node.js version is too old. Installing Node.js 20...${NC}"
+    echo -e "${YELLOW}⚠️  Node.js version is too old or not installed. Installing Node.js 20...${NC}"
+    
+    # Remove old NodeSource repository if exists
+    sudo rm -f /etc/apt/sources.list.d/nodesource.list
+    
+    # Install Node.js 20
     curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
     sudo apt install -y nodejs
-    echo -e "${GREEN}✅ Node.js updated to $(node -v)${NC}"
+    
+    # Verify installation
+    if command -v node &> /dev/null; then
+        echo -e "${GREEN}✅ Node.js updated to $(node -v)${NC}"
+    else
+        echo -e "${RED}❌ Failed to install Node.js${NC}"
+        exit 1
+    fi
+else
+    echo -e "${GREEN}✅ Node.js version is adequate${NC}"
 fi
 
 # Navigate to MagicMirror directory
