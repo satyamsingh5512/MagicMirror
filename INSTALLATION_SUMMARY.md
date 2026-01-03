@@ -1,4 +1,4 @@
-# 🪞 MagicMirror AI Assistant - Complete Setup Guide
+sw# 🪞 MagicMirror AI Assistant - Complete Setup Guide
 
 ## ⚡ **Current Status**
 
