@@ -1,17 +1,19 @@
 {
-  "name": "magicmirror",
-  "version": "2.33.0",
+  "name": "magicmirror-pi",
+  "version": "2.33.0-pi",
   "_moduleAliases": {
     "logger": "js/logger.js",
     "node_helper": "js/node_helper.js"
   },
-  "description": "The open source modular smart mirror platform.",
+  "description": "Smart Mirror with AI Assistant - Optimized for Raspberry Pi 3B (aarch64)",
   "keywords": [
     "magic mirror",
     "magicmirror",
     "smart mirror",
-    "mirror UI",
-    "modular"
+    "raspberry pi",
+    "pi 3b",
+    "aarch64",
+    "ai assistant"
   ],
   "homepage": "https://magicmirror.builders",
   "bugs": {
