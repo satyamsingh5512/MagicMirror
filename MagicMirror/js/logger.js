@@ -108,4 +108,3 @@
 
 	return logLevel;
 }));
-const Log = require("logger");
